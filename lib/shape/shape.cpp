@@ -32,8 +32,16 @@ Shape::Shape(int type, int _x1, int _y1, int _z1, int _x2, int _y2, int _z2, int
 	}
 	
 	// стороны фигуры
-	int a = abs(x1 - x2);
-	int b = abs(y1 - y2);
+	double a = 0;
+	if (x1 != x2 && y1 == y2)
+		a = abs(x1 - x2);
+	else if (x1 == x2 && y1 != y2)
+		a = abs(y1 - y2);
+	else
+		a = sqrt(pow(abs(x1 - x2), 2) + pow(abs(y1 - y2), 2)); 
+
+
+	int b = abs(y1 - y3);
 	int c = abs(z1 - z2);
 	// считаем площадь фигуры
 	switch (type)
