@@ -8,13 +8,15 @@
 #include "../lib/point/point.h"
 
 
-//static const unsigned char CHAR_BUFF = 255;
 
 namespace my
 {
+
+    const char* test_div = "\n----------------------------------\n\n";
+    const char* lable_coord = "xyz";
+
     const std::string shape_to_str(Shape& shape)
     {
-        //char str[CHAR_BUFF]{0};
         const std::string div = ", ";
 
         std::vector<std::string> figure{
@@ -24,10 +26,6 @@ namespace my
             "circle",
             "cylinder",
         };
-
-//        const std::string str_t = "Figure: " + figure.at(shape.getType());
-        //std::cout << "Shape type: " << shape.getType() << '\n';
-        //const std::string str_t = "Figure: " + figure.at(0);
 
         std::vector<std::string> params{
             "Figure: " + figure.at(shape.getType()),
@@ -44,6 +42,49 @@ namespace my
 
         return str;
     }
+}
+
+class PointTest : public ::testing::Test
+{
+    public:
+        Point* point;
+    protected:
+        // void Setup (Point* point) 
+        // {
+        //     point = new Point();
+        // }
+        void Setup (const double x, const double y, const double z)
+        {
+            point = new Point(x, y, z);
+        }
+
+        void TearDown() override
+        {
+            delete point;
+        }
+
+        Point* point{nullptr};
+};
+
+TEST_F(PointTest, defaul_constructor)
+{
+    //Point point; // = new Point();
+
+    //Setup(point);
+
+    Setup(1, 2, 3);
+
+    std::vector<double> vec_point = point.get();
+
+    std::cout << my::test_div;
+
+    for (int i = 0; my::lable_coord[i] != 0; ++i)
+        std::cout << (i == 0 ? "" : ", " ) << my::lable_coord[i] << " = " 
+            << vec_point.at(i);
+
+    std::cout << my::test_div;
+
+    EXPECT_EQ(true, vec_point.at(0) == 0 && vec_point.at(1) == 0 && vec_point.at(2) == 0);
 }
 
 int main(int argc, char** argv)
