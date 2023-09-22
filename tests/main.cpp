@@ -4,8 +4,8 @@
 #include <vector>
 //#include <cstring>
 //#include "transform.h"
-#include "lib/shape/shape.h"
-#include "lib/point/point.h"
+#include "../lib/shape/shape.h"
+#include "../lib/point/point.h"
 
 
 //static const unsigned char CHAR_BUFF = 255;
@@ -46,7 +46,7 @@ namespace my
     }
 }
 
-int main()
+int main(int argc, char** argv)
 {
     //Shape f1(4, 1, 2, 3, 4); //cylinder
     //Shape f1(0, 1, 2, 0, 1, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //line
@@ -55,6 +55,7 @@ int main()
 
     //std::cout << my::shape_to_str(f1) << '\n';
 
+    ::testing::InitGoogleTest(&argc, argv);
 
-    return 0;
+    return RUN_ALL_TESTS();
 }
