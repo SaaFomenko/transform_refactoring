@@ -35,7 +35,7 @@ Point::Point(Point&& other) noexcept
 
 Point Point::operator=(Point&& other) noexcept
 {
-    return Point(other);
+    return *this = other;
 }
 
 Point::~Point()

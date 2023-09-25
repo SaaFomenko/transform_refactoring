@@ -3,6 +3,13 @@
 
 #include <vector>
 
+enum ord
+{
+	x,
+	y,
+	z,
+};
+
 class Point
 {
 	private:
