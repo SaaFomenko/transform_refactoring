@@ -11,6 +11,7 @@ class Point
 		double z_;
 	public:
 		Point(const double x = 0, const double y = 0, const double z = 0);
+		Point(std::vector<double> p);
 		Point(Point& other);
 		Point& operator=(Point& other);
 		Point(Point&& other) noexcept;

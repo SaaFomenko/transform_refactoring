@@ -7,6 +7,12 @@ Point::Point(const double x, const double y, const double z) :
     z_(z)
 {}
 
+Point::Point(std::vector<double> p) :
+    x_(p.at(0)),
+    y_(p.at(1)),
+    z_(p.at(2))
+{}
+
 Point::Point(Point& other) :
     x_(other.x_),
     y_(other.y_),

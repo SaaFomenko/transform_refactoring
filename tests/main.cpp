@@ -12,8 +12,14 @@
 namespace my
 {
 
-    const char* test_div = "\n----------------------------------\n\n";
+    const char* test_div = "\n----------------------------------\n";
     const char* lable_coord = "xyz";
+    std::vector<double> p1 = {1, 2, 3};
+    std::vector<double> p2 = {4, 5, 6};
+
+    template <class T>
+    void xyz_print(std::vector<T> vec, const char* head)
+    {}
 
     const std::string shape_to_str(Shape& shape)
     {
@@ -48,35 +54,44 @@ class PointTest : public ::testing::Test
 {
     public:
         Point* point;
+        //Point* p1_;
+        //Point* p2_;
     protected:
-        // void Setup (Point* point) 
-        // {
-        //     point = new Point();
-        // }
-        void Setup (const double x, const double y, const double z)
+        void SetUp() 
+        {
+            point = new Point();
+        }
+        void SetUp(const double x, const double y, const double z)
         {
             point = new Point(x, y, z);
+        }
+        void SetUp(std::vector<double> p)
+        {
+            point = new Point(p);
         }
 
         void TearDown() override
         {
             delete point;
+           // delete p1_;
+            //delete p2_;
+            point = nullptr;
+            //p1_ = nullptr;
+            //p2_ = nullptr;
         }
-
-        Point* point{nullptr};
 };
 
 TEST_F(PointTest, defaul_constructor)
 {
     //Point point; // = new Point();
 
-    //Setup(point);
+    SetUp();
 
-    Setup(1, 2, 3);
+    //SetUp(1, 2, 3);
 
-    std::vector<double> vec_point = point.get();
+    std::vector<double> vec_point = point->get();
 
-    std::cout << my::test_div;
+    std::cout << my::test_div << "Default point coordinate: ";
 
     for (int i = 0; my::lable_coord[i] != 0; ++i)
         std::cout << (i == 0 ? "" : ", " ) << my::lable_coord[i] << " = " 
@@ -84,7 +99,19 @@ TEST_F(PointTest, defaul_constructor)
 
     std::cout << my::test_div;
 
-    EXPECT_EQ(true, vec_point.at(0) == 0 && vec_point.at(1) == 0 && vec_point.at(2) == 0);
+    EXPECT_EQ(
+        true, 
+        vec_point.at(0) == 0 && vec_point.at(1) == 0 && vec_point.at(2) == 0);
+}
+
+TEST_F(PointTest, params_constructor)
+{
+    SetUp(my::p1.at(0), my::p1.at(1), my::p1.at(2));
+
+    std::vector<double> p1 = point->get();
+
+    std::cout << my::test_div << "Set const point coordinate: ";
+
 }
 
 int main(int argc, char** argv)
