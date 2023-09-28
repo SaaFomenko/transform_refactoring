@@ -1,9 +1,11 @@
 #include "shape.h"
 
-Shape<Point>::Shape() :
-	type(figure::point),
-	shape(Point())
-{}
+
+Shape::
+// Shape<Point>::Shape() :
+// 	type(figure::point),
+// 	shape(Point())
+// {}
 
 // Shape::Shape(int type, int _x1, int _y1, double R, double H)
 // {
