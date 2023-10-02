@@ -1,27 +1,28 @@
 #ifndef SHAPE_H
 #define SHAPE_H
 
+
+struct Point
+{
+	double x;
+	double y;
+	double z;
+};
+
 class Shape
 {
-	private:
-
+	protected:
+		Shape() = default;
 	public:
-		enum types
-		{
-			line
-		};
-
-		Shape();
 		virtual ~Shape();
-		//Shape() = delete;
-		//Shape(Line& l);
-	//Shape(int type, int _x1, int _y1, double R, double H);
-		int getType();
-		//T& get();
-		// double volume();
-		// double square();
-		// double height();
-		// double radius();
+		virtual int getType() = 0;
+		//virtual Shape CreateInstance(int type) = 0;
+
+		const int line = 0;
+		const int rectangle = 1;
+		const int parallelogram = 2;
+		const int circle = 3;
+		const int cylinder = 4;
 };
 
 #endif
