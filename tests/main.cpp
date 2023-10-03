@@ -27,33 +27,33 @@ namespace my
             << vec.at(i);
     }
 
-    const std::string shape_to_str(Shape& shape)
-    {
-        const std::string div = ", ";
+    // const std::string shape_to_str(Shape& shape)
+    // {
+    //     const std::string div = ", ";
 
-        std::vector<std::string> figure{
-            "line",
-            "rectanle",
-            "cube",
-            "circle",
-            "cylinder",
-        };
+    //     std::vector<std::string> figure{
+    //         "line",
+    //         "rectanle",
+    //         "cube",
+    //         "circle",
+    //         "cylinder",
+    //     };
 
-        std::vector<std::string> params{
-            "Figure: " + figure.at(shape.getType()),
-            "volume = " + std::to_string(shape.volume),
-            "square = " + std::to_string(shape.square),
-            "height = " + std::to_string(shape.height),
-            "radius = " + std::to_string(shape.radius),
-        }; 
+    //     std::vector<std::string> params{
+    //         "Figure: " + figure.at(shape.getType()),
+    //         "volume = " + std::to_string(shape.volume),
+    //         "square = " + std::to_string(shape.square),
+    //         "height = " + std::to_string(shape.height),
+    //         "radius = " + std::to_string(shape.radius),
+    //     }; 
         
-        std::string str = "";
+    //     std::string str = "";
 
-        for (std::string el : params)
-            str += el + div;
+    //     for (std::string el : params)
+    //         str += el + div;
 
-        return str;
-    }
+    //     return str;
+    // }
 }
 
 template <class T>
@@ -64,14 +64,15 @@ void print_test(T val, const char* name)
     std::cout << my::test_div;
 }
 
-class LineTest : public ::testing::Test
+class LineShapeTest : public ::testing::Test
 {
     public:
-        Line* l;
+        Shape* l;
     protected:
         void SetUp(Point& a, Point& b) 
         {
-            l = new Line(a, b);
+            Points points = {a, b};
+            l = new Shape(Shape::line, points);
         }
 
         void TearDown() override

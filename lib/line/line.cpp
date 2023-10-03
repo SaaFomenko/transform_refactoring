@@ -3,33 +3,10 @@
 
 
 Line::Line(int type, Point A, Point B) :
-    type(type),
+    Shape(type, std::vector<Point>{A, B}),
     A(A),
     B(B)
 {}
-
-Line::Line(Line& other) :
-    A(other.A),
-    B(other.B)
-{}
-
-Line& Line::operator=(Line& other)
-{
-    A = other.A;
-    B = other.B;
-
-    return *this;
-}
-
-Line::Line(Line&& other) noexcept
-{
-    *this = other;
-}
-
-// Line Line::operator=(Line&& other) noexcept
-// {
-//     return *this = other;
-// }
 
 Line::~Line()
 {}
