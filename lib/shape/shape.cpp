@@ -21,7 +21,10 @@ std::vector<double> Point::get()
 Shape::Shape(const int type, Points points) :
 	type(type),
 	points(points)
-{}
+{
+	if (type == line)
+		this* = Line();
+}
 
 Shape::Shape(Shape& other) :
     type(other.type),
@@ -45,3 +48,5 @@ Shape Shape::operator=(Shape&& other) noexcept
 {
     return *this = other;
 }
+
+//Shape Shape::
