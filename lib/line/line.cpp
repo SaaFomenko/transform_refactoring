@@ -2,8 +2,7 @@
 #include "line.h"
 
 
-Line::Line(int type, Point A, Point B) :
-    Shape(type, std::vector<Point>{A, B}),
+Line::Line(Point A, Point B) :
     A(A),
     B(B)
 {}

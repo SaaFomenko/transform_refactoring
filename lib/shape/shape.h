@@ -2,46 +2,33 @@
 #define SHAPE_H
 
 #include <vector>
+#include <exception>
 
-
-struct Point
+enum shape
 {
-	double x;
-	double y;
-	double z;
-
-	Point();
-	Point(double x, double y, double z);
-
-	std::vector<double> get();
-
-	virtual ~Point();
+	line,
+	rectangle,
+	parallelepiped,
+	circle,
+	cylinder
 };
-
-using Points = std::vector<Point>;
 
 class Shape
 {
 	private:
 		int type;
 		Points points;
+		Shape* figure;
 
 	public:
-		const int line = 0;
-		const int rectangle = 1;
-		const int parallelogram = 2;
-		const int circle = 3;
-		const int cylinder = 4;
-
 		Shape(const int type, Points points);
 		Shape(Shape& other);
 		Shape& operator=(Shape& other);
 		Shape(Shape&& other) noexcept;
 		Shape operator=(Shape&& other) noexcept;
 
-
-		virtual int getType();
-		virtual Shape CreateInstance(int type);
+		int getType();
+		virtual double size();
 
 		virtual ~Shape();
 };

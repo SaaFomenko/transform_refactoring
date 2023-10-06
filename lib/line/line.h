@@ -4,7 +4,7 @@
 #include <vector>
 #include "../shape/shape.h"
 
-class Line : public Shape
+class Line
 {
 	private:
 //		int type;
@@ -13,10 +13,10 @@ class Line : public Shape
 		Point B;
 
 	public:
-		Line(int type, Point A, Point B);
+		Line(Point A, Point B);
         virtual ~Line();
 
-        double size();
+        virtual double size();
 };
 
 #endif
