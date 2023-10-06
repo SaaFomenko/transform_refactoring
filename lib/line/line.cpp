@@ -2,9 +2,9 @@
 #include "line.h"
 
 
-Line::Line(Point A, Point B) :
-    A(A),
-    B(B)
+Line::Line(Points points) :
+    A(points.at(0)),
+    B(points.at(1))
 {}
 
 Line::~Line()

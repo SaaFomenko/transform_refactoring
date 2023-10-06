@@ -13,24 +13,48 @@ enum shape
 	cylinder
 };
 
+struct Point
+{
+	double x;
+	double y;
+	double z;
+
+	Point();
+	Point(double x, double y, double z);
+
+	std::vector<double> get();
+
+	virtual ~Point();
+};
+
+using Points = std::vector<Point>;
+
+template <class T>
 class Shape
 {
 	private:
-		int type;
-		Points points;
-		Shape* figure;
+		T* figure;
 
 	public:
-		Shape(const int type, Points points);
-		Shape(Shape& other);
-		Shape& operator=(Shape& other);
-		Shape(Shape&& other) noexcept;
-		Shape operator=(Shape&& other) noexcept;
+		Shape(Points points)
+		{
+			figure = new T(points);
+		}
 
-		int getType();
-		virtual double size();
+		int getType()
+		{
+			return figure->getType();
+		}
+		double size()
+		{
+			return figure->size();
+		}
 
-		virtual ~Shape();
+		~Shape()
+		{
+			delete figure;
+			figure = nullptr;
+		}
 };
 
 #endif

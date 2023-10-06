@@ -4,6 +4,7 @@
 #include <vector>
 //#include "transform.h"
 #include "../lib/shape/shape.h"
+#include "../lib/line/line.h"
 
 namespace my
 {
@@ -36,12 +37,12 @@ void print_test(T val, const char* name)
 class LineShapeTest : public ::testing::Test
 {
     public:
-        Shape* l;
+        Shape<Line>* l;
     protected:
         void SetUp(Point& a, Point& b) 
         {
             Points points = {a, b};
-            l = new Shape(shape::line, points);
+            l = new Shape<Line>(points);
         }
 
         void TearDown() override
