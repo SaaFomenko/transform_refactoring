@@ -1,27 +1,36 @@
 #ifndef SHAPE_H
 #define SHAPE_H
 
+#include <vector>
+#include <exception>
+
+enum shape
+{
+	line,
+	rectangle,
+	parallelepiped,
+	circle,
+	cylinder
+};
+
 class Shape
 {
 	private:
+		int type;
+		Points points;
+		Shape* figure;
 
 	public:
-		enum types
-		{
-			line
-		};
+		Shape(const int type, Points points);
+		Shape(Shape& other);
+		Shape& operator=(Shape& other);
+		Shape(Shape&& other) noexcept;
+		Shape operator=(Shape&& other) noexcept;
 
-		Shape();
-		virtual ~Shape();
-		//Shape() = delete;
-		//Shape(Line& l);
-	//Shape(int type, int _x1, int _y1, double R, double H);
 		int getType();
-		//T& get();
-		// double volume();
-		// double square();
-		// double height();
-		// double radius();
+		virtual double size();
+
+		virtual ~Shape();
 };
 
 #endif

@@ -1,23 +1,22 @@
 #ifndef LINE_H
 #define LINE_H
 
-#include "../point/point.h"
+#include <vector>
+#include "../shape/shape.h"
 
 class Line
 {
 	private:
-		Point a_;
-		Point b_;
+//		int type;
+
+		Point A;
+		Point B;
+
 	public:
-		Line();
-		Line(Point a, Point b);
-		Line(Line& other);
-		Line& operator=(Line& other);
-		Line(Line&& other) noexcept;
-		Line operator=(Line&& other) noexcept;
+		Line(Point A, Point B);
         virtual ~Line();
 
-        double size();
+        virtual double size();
 };
 
 #endif
