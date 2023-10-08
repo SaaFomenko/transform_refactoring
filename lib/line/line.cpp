@@ -19,3 +19,8 @@ double Line::size()
         pow(abs(A.z - B.z), 2) 
     );
 }
+
+int Line::getType()
+{
+    return shape::line;
+}

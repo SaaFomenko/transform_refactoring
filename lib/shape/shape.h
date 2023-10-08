@@ -2,7 +2,6 @@
 #define SHAPE_H
 
 #include <vector>
-#include <exception>
 
 enum shape
 {
@@ -28,6 +27,13 @@ struct Point
 };
 
 using Points = std::vector<Point>;
+
+// class ShapeBase
+// {
+// 	public:
+// 		virtual int getType() = 0;
+// 		virtual ~ShapeBase();
+// };
 
 template <class T>
 class Shape

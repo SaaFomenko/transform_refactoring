@@ -61,6 +61,31 @@ TEST_F(LineShapeTest, line_size_method)
     EXPECT_EQ(true, my::ab_size == l->size());
 }
 
+TEST_F(LineShapeTest, line_id_method)
+{
+    SetUp(my::a, my::b);
+
+    print_test<double>(l->getType(), "Line getType() id: ");
+
+    EXPECT_EQ(true, shape::line == l->getType());
+}
+
+class RectangleShapeTest : public ::testing::Test
+{
+    public:
+        Shape<Rectangle>* r;
+    protected:
+        void SetUp(Points& p)
+        {
+            r = new Shape<Rectangle>(p);
+        }
+
+        void TeamDown() override
+        {
+            delete r;
+            r = nullptr;
+        }
+}
 
 int main(int argc, char** argv)
 {

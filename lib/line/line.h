@@ -14,6 +14,7 @@ class Line
         virtual ~Line();
 
         double size();
+		int getType();
 };
 
 #endif
