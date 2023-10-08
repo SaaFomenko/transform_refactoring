@@ -12,6 +12,10 @@ namespace my
     Point a(1, 2, 0);
     Point b(5, 2, 0);
     const double ab_size = 4;
+    Point c(5, 1, 0);
+    Point d(1, 1, 0);
+    Points rectangle_p{a, b, c, d};
+    const double rect_area = 4;
 
     const char* test_div = "\n----------------------------------\n";
 
@@ -85,6 +89,15 @@ class RectangleShapeTest : public ::testing::Test
             delete r;
             r = nullptr;
         }
+}
+
+TEST_F(RectangleShapeTest, rectangle_id_method)
+{
+    SetUp(my::rectangle_p);
+
+    print_test<double>(r->getType(), "Line getType() id: ");
+
+    EXPECT_EQ(true, shape::line == r->getType());
 }
 
 int main(int argc, char** argv)
