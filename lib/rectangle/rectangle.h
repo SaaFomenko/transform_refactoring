@@ -12,12 +12,13 @@ class Rectangle
 		Point C;
 		Point D;
 	public:
+		const int vertex = 4;
 		Rectangle(Points& points);
 
 		int getType();
 		double square();
 
 		~Rectangle();
-}
+};
 
 #endif

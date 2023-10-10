@@ -9,7 +9,7 @@ enum shape
 	rectangle,
 	parallelepiped,
 	circle,
-	cylinder
+	cylinder,
 };
 
 struct Point

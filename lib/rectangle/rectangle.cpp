@@ -3,5 +3,9 @@
 
 Rectangle::Rectangle(Points& points)
 {
+    if (points.size() == vertex)
+    {
+        
+    }
 	
 }
