@@ -4,7 +4,7 @@
 #include "../shape/shape.h"
 
 
-class Rectangle
+class Rectangle : ShapeBase
 {
 	private:
 		Point A;
@@ -12,10 +12,9 @@ class Rectangle
 		Point C;
 		Point D;
 	public:
-		const int vertex = 4;
-		Rectangle(Points& points);
+		Rectangle(Points points);
 
-		int getType();
+		const int getType() override;
 		double square();
 
 		~Rectangle();

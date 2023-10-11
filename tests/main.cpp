@@ -5,6 +5,7 @@
 //#include "transform.h"
 #include "../lib/shape/shape.h"
 #include "../lib/line/line.h"
+#include "../lib/rectangle/rectangle.h"
 
 namespace my
 {
@@ -84,21 +85,31 @@ class RectangleShapeTest : public ::testing::Test
             r = new Shape<Rectangle>(p);
         }
 
-        void TeamDown() override
+        void TearDown() override
         {
             delete r;
             r = nullptr;
         }
-}
+};
 
-TEST_F(RectangleShapeTest, rectangle_id_method)
+TEST_F(RectangleShapeTest, id_rectangle_method_test)
 {
     SetUp(my::rectangle_p);
 
     print_test<double>(r->getType(), "Line getType() id: ");
 
-    EXPECT_EQ(true, shape::line == r->getType());
+    EXPECT_EQ(true, shape::rectangle == r->getType());
 }
+
+TEST_F(RectangleShapeTest, rectangle_square_method_test)
+{
+    SetUp(my::rectangle_p);
+
+    print_test<double>(r->square(), "Area for rectangle equal to: ");
+
+    EXPECT_EQ(true, shape::rectangle == r->getType());
+}
+
 
 int main(int argc, char** argv)
 {

@@ -3,6 +3,7 @@
 
 
 Line::Line(Points points) :
+    ShapeBase(2, points),
     A(points.at(0)),
     B(points.at(1))
 {}
@@ -20,7 +21,7 @@ double Line::size()
     );
 }
 
-int Line::getType()
+const int Line::getType()
 {
     return shape::line;
 }

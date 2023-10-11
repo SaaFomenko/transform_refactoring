@@ -3,7 +3,7 @@
 
 #include "../shape/shape.h"
 
-class Line
+class Line : public ShapeBase
 {
 	private:
 		Point A;
@@ -14,7 +14,7 @@ class Line
         virtual ~Line();
 
         double size();
-		int getType();
+		const int getType() override;
 };
 
 #endif

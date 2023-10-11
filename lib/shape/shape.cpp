@@ -1,6 +1,17 @@
 #include "shape.h"
 
 
+MyException::MyException(const char* msg_) : msg(msg_)
+{}
+
+MyException::~MyException()
+{}
+
+const char* MyException::what() const noexcept
+{
+    return msg;
+}
+
 Point::Point() :
 	x(0),
 	y(0),
@@ -19,4 +30,12 @@ std::vector<double> Point::get()
 }
 
 Point::~Point()
+{}
+
+ShapeBase::ShapeBase(int vertex, Points points) :
+	vertex(vertex),
+	points(points)
+{}
+
+ShapeBase::~ShapeBase()
 {}
