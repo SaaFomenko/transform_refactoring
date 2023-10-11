@@ -42,12 +42,12 @@ void print_test(T val, const char* name)
 class LineShapeTest : public ::testing::Test
 {
     public:
-        Shape<Line>* l;
+        Line* l;
     protected:
         void SetUp(Point& a, Point& b) 
         {
             Points points = {a, b};
-            l = new Shape<Line>(points);
+            l = new Line(points);
         }
 
         void TearDown() override
@@ -78,11 +78,11 @@ TEST_F(LineShapeTest, line_id_method)
 class RectangleShapeTest : public ::testing::Test
 {
     public:
-        Shape<Rectangle>* r;
+        Rectangle* r;
     protected:
         void SetUp(Points& p)
         {
-            r = new Shape<Rectangle>(p);
+            r = new Rectangle(p);
         }
 
         void TearDown() override

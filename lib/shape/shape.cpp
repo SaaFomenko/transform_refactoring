@@ -32,10 +32,10 @@ std::vector<double> Point::get()
 Point::~Point()
 {}
 
-ShapeBase::ShapeBase(int vertex, Points points) :
+Shape::Shape(int vertex, Points points) :
 	vertex(vertex),
 	points(points)
 {}
 
-ShapeBase::~ShapeBase()
+Shape::~Shape()
 {}

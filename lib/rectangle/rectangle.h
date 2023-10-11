@@ -4,7 +4,7 @@
 #include "../shape/shape.h"
 
 
-class Rectangle : ShapeBase
+class Rectangle : Shape
 {
 	private:
 		Point A;

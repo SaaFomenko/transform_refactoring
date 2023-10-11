@@ -3,7 +3,7 @@
 
 #include "../shape/shape.h"
 
-class Line : public ShapeBase
+class Line : public Shape
 {
 	private:
 		Point A;

@@ -3,7 +3,7 @@
 
 
 Rectangle::Rectangle(Points points) :
-    ShapeBase(4, points)
+    Shape(4, points)
 {
     if (points.size() == vertex)
     {

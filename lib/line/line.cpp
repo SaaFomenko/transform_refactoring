@@ -3,7 +3,7 @@
 
 
 Line::Line(Points points) :
-    ShapeBase(2, points),
+    Shape(2, points),
     A(points.at(0)),
     B(points.at(1))
 {}

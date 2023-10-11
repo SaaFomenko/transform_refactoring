@@ -44,55 +44,17 @@ struct Point
 
 using Points = std::vector<Point>;
 
-class ShapeBase
+class Shape
 {
 	protected:
 		int vertex;
 		Points points;
 
 	public:
-		ShapeBase(int vertex, Points Points);
-		virtual ~ShapeBase();
+		Shape(int vertex, Points Points);
+		virtual ~Shape();
 
 		virtual const int getType() = 0;
-};
-
-template <class T>
-class Shape
-{
-	private:
-		T* figure;
-
-	public:
-		Shape(Points points)
-		{
-			figure = new T(points);
-		}
-
-		~Shape()
-		{
-			delete figure;
-			figure = nullptr;
-		}
-
-		int getType()
-		{
-			return figure->getType();
-		}
-		double size()
-		{
-			if (figure->getType() != shape::line)
-				throw MyException(err_not_method);
-
-			return figure->size();
-		}
-		double square()
-		{
-			if (figure->getType() != shape::rectangle)
-				throw MyException(err_not_method);
-
-			return figure->square();
-		}
 };
 
 #endif
