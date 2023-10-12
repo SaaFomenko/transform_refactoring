@@ -1,12 +1,14 @@
 #include <iostream>
 #include <gtest/gtest.h>
 #include <chrono>
+#include <cmath>
 #include <vector>
 //#include "transform.h"
 #include "../lib/shape/shape.h"
 #include "../lib/line/line.h"
 #include "../lib/rectangle/rectangle.h"
 #include "../lib/parallelepiped/parallelepiped.h"
+#include "../lib/circle/circle.h"
 
 namespace my
 {
@@ -24,6 +26,8 @@ namespace my
     Point h(1, 1, 5);
     Points parallelepiped_p{a, b, c, d, e, f, g, h};
     const double parallel_volume = 20;
+    const double radius = 2;
+    double circle_area = M_PI * 2 * 2;
 
     const char* test_div = "\n----------------------------------\n";
 
@@ -152,6 +156,40 @@ TEST_F(ParallelepipedShapeTest, parallelepiped_volume_method_test)
     EXPECT_EQ(true, my::parallel_volume == p->volume());
 }
 
+class CircleShapeTest : public ::testing::Test
+{
+    public:
+        Circle* c;
+    protected:
+        void SetUp(Point center, double radius)
+        {
+            c = new Circle(center, radius);
+        }
+
+        void TearDown() override
+        {
+            delete c;
+            c = nullptr;
+        }
+};
+
+TEST_F(CircleShapeTest, id_circle_method_test)
+{
+    SetUp(my::f, my::radius);
+
+    print_test<double>(c->getType(), "Circle getType() id: ");
+
+    EXPECT_EQ(true, shape::circle == c->getType());
+}
+
+TEST_F(CircleShapeTest, circle_square_method_test)
+{
+    SetUp(my::f, my::radius);
+
+    print_test<double>(c->square(), "Area for circle equal to: ");
+
+    EXPECT_EQ(true, my::circle_area == c->square());
+}
 
 int main(int argc, char** argv)
 {

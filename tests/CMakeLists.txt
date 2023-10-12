@@ -14,7 +14,9 @@ add_library(shape_lib "../lib/shape/shape.cpp")
 add_library(line_lib "../lib/line/line.cpp")
 add_library(rectangle_lib "../lib/rectangle/rectangle.cpp")
 add_library(parallelepiped_lib "../lib/parallelepiped/parallelepiped.cpp")
+add_library(circle_lib "../lib/circle/circle.cpp")
 
 add_executable(${PROJECT_NAME}.exe main.cpp)
 
-target_link_libraries(${PROJECT_NAME}.exe shape_lib line_lib rectangle_lib parallelepiped_lib gtest pthread)
+target_link_libraries(${PROJECT_NAME}.exe 
+	shape_lib line_lib rectangle_lib parallelepiped_lib circle_lib gtest pthread)
