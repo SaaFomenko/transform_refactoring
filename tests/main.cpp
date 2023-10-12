@@ -6,6 +6,7 @@
 #include "../lib/shape/shape.h"
 #include "../lib/line/line.h"
 #include "../lib/rectangle/rectangle.h"
+#include "../lib/parallelepiped/parallelepiped.h"
 
 namespace my
 {
@@ -17,6 +18,12 @@ namespace my
     Point d(1, 1, 0);
     Points rectangle_p{a, b, c, d};
     const double rect_area = 4;
+    Point e(1, 2, 5);
+    Point f(5, 2, 5);
+    Point g(5, 1, 5);
+    Point h(1, 1, 5);
+    Points parallelepiped_p{a, b, c, d, e, f, g, h};
+    const double parallel_volume = 20;
 
     const char* test_div = "\n----------------------------------\n";
 
@@ -96,7 +103,7 @@ TEST_F(RectangleShapeTest, id_rectangle_method_test)
 {
     SetUp(my::rectangle_p);
 
-    print_test<double>(r->getType(), "Line getType() id: ");
+    print_test<double>(r->getType(), "Rectangle getType() id: ");
 
     EXPECT_EQ(true, shape::rectangle == r->getType());
 }
@@ -107,7 +114,42 @@ TEST_F(RectangleShapeTest, rectangle_square_method_test)
 
     print_test<double>(r->square(), "Area for rectangle equal to: ");
 
-    EXPECT_EQ(true, shape::rectangle == r->getType());
+    EXPECT_EQ(true, my::rect_area == r->square());
+}
+
+class ParallelepipedShapeTest : public ::testing::Test
+{
+    public:
+        Parallelepiped* p;
+    protected:
+        void SetUp(Points& points)
+        {
+            p = new Parallelepiped(points);
+        }
+
+        void TearDown() override
+        {
+            delete p;
+            p = nullptr;
+        }
+};
+
+TEST_F(ParallelepipedShapeTest, parallelepiped_id_method_test)
+{
+    SetUp(my::parallelepiped_p);
+
+    print_test<double>(p->getType(), "Parallelepiped getType() id: ");
+
+    EXPECT_EQ(true, shape::parallelepiped == p->getType());
+}
+
+TEST_F(ParallelepipedShapeTest, parallelepiped_volume_method_test)
+{
+    SetUp(my::parallelepiped_p);
+
+    print_test<double>(p->volume(), "Volume for parallelepiped equal to: ");
+
+    EXPECT_EQ(true, my::parallel_volume == p->volume());
 }
 
 
