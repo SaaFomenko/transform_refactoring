@@ -2,19 +2,21 @@
 #include "../line/line.h"
 
 
+Rectangle::Rectangle(const int vertexes, Points points) :
+    Shape(vertexes, points),
+    A(points.at(0)),
+    B(points.at(1)),
+    C(points.at(2)),
+    D(points.at(3))
+{}
+
 Rectangle::Rectangle(Points points) :
-    Shape(4, points)
-{
-    if (points.size() == vertex)
-    {
-        A = points.at(0);
-        B = points.at(1);
-        C = points.at(2);
-        D = points.at(3);
-    }
-    else
-        throw MyException(err_vertex);	
-}
+    Shape(4, points),
+    A(points.at(0)),
+    B(points.at(1)),
+    C(points.at(2)),
+    D(points.at(3))
+{}
 
 const int Rectangle::getType()
 {

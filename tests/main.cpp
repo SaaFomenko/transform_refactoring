@@ -15,18 +15,19 @@ namespace my
     //Test Line
     Point a(1, 2, 0);
     Point b(5, 2, 0);
-    const double ab_size = 4;
+    double ab_size = 4;
     Point c(5, 1, 0);
     Point d(1, 1, 0);
     Points rectangle_p{a, b, c, d};
-    const double rect_area = 4;
+    double rect_area = 4;
     Point e(1, 2, 5);
     Point f(5, 2, 5);
     Point g(5, 1, 5);
     Point h(1, 1, 5);
     Points parallelepiped_p{a, b, c, d, e, f, g, h};
-    const double parallel_volume = 20;
-    const double radius = 2;
+    double parallel_area = 58;
+    double parallel_volume = 20;
+    double radius = 2;
     double circle_area = M_PI * 2 * 2;
 
     const char* test_div = "\n----------------------------------\n";
@@ -146,6 +147,16 @@ TEST_F(ParallelepipedShapeTest, parallelepiped_id_method_test)
 
     EXPECT_EQ(true, shape::parallelepiped == p->getType());
 }
+
+TEST_F(ParallelepipedShapeTest, parallelepiped_square_method_test)
+{
+    SetUp(my::parallelepiped_p);
+
+    print_test<double>(p->square(), "Area for parallelepiped equal to: ");
+
+    EXPECT_EQ(true, my::parallel_area == p->square());
+}
+
 
 TEST_F(ParallelepipedShapeTest, parallelepiped_volume_method_test)
 {

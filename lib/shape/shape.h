@@ -5,7 +5,7 @@
 #include <vector>
 
 
-static const char* err_vertex = "Number vertex do not respond this shape";
+static const char* err_vertexes = "Number vertex do not respond this shape";
 static const char* err_not_method = "This method do not exist for current shape.";
 
 class MyException : public std::exception
@@ -47,7 +47,7 @@ using Points = std::vector<Point>;
 class Shape
 {
 	protected:
-		int vertex;
+		int vertexes;
 		Points points;
 
 	public:

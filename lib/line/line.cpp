@@ -3,16 +3,10 @@
 
 
 Line::Line(Points points) :
-    Shape(2, points)
-{
-    if (vertex == points.size())
-    {
-        A = points.at(0);
-        B = points.at(1);
-    }
-    else
-        throw MyException(err_vertex);
-}
+    Shape(2, points),
+    A(points.at(0)),
+    B(points.at(1))
+{}
 
 Line::~Line()
 {}

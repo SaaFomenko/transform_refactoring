@@ -2,17 +2,17 @@
 #include "circle.h"
 
 
+Circle::Circle(const int vertexes, Point center, double radius) :
+    Shape(vertexes, Points{center}),
+    A(center),
+    R(radius)
+{}
+
 Circle::Circle(Point center, double radius) :
-    Shape(1, Points{center})
-{
-    if (vertex == points.size())
-    {
-        A = center;
-        R = radius;
-    }
-    else
-        throw MyException(err_vertex);
-}
+    Shape(1, Points{center}),
+    A(center),
+    R(radius)
+{}
 
 Circle::~Circle()
 {}

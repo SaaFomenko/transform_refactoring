@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.18)
 
-project(rectangle)
+project(cylinder)
 
 file(GLOB
 	public_headers "*.h"

@@ -6,18 +6,19 @@
 
 class Rectangle : Shape
 {
-	private:
+	protected:
 		Point A;
 		Point B;
 		Point C;
 		Point D;
+		Rectangle(const int vertexes, Points points);
+
 	public:
 		Rectangle(Points points);
+		virtual ~Rectangle();
 
-		const int getType() override;
-		double square();
-
-		~Rectangle();
+		virtual const int getType() override;
+		virtual double square();
 };
 
 #endif

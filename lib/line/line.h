@@ -13,8 +13,8 @@ class Line : public Shape
 		Line(Points points);
         virtual ~Line();
 
-        double size();
-		const int getType() override;
+        virtual double size();
+		virtual const int getType() override;
 };
 
 #endif

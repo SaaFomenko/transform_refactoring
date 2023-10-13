@@ -32,10 +32,13 @@ std::vector<double> Point::get()
 Point::~Point()
 {}
 
-Shape::Shape(int vertex, Points points) :
-	vertex(vertex),
+Shape::Shape(int vertexes, Points points) :
+	vertexes(vertexes),
 	points(points)
-{}
+{
+	if (vertexes != points.size())
+		throw MyException(err_vertexes);
+}
 
 Shape::~Shape()
 {}
