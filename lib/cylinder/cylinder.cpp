@@ -10,9 +10,14 @@ Cylinder::Cylinder(Point center, const double radius, const double hight) :
 Cylinder::~Cylinder()
 {}
 
+const int Cylinder::getType()
+{
+    return shape::cylinder;
+}
+
 double Cylinder::square()
 {
-    return M_PI * R * R + 2 * R * H;
+    return M_PI * R * R * 2 + M_PI * H * R * 2;
 }
 
 double Cylinder::volume()

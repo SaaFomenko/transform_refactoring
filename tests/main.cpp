@@ -9,6 +9,7 @@
 #include "../lib/rectangle/rectangle.h"
 #include "../lib/parallelepiped/parallelepiped.h"
 #include "../lib/circle/circle.h"
+#include "../lib/cylinder/cylinder.h"
 
 namespace my
 {
@@ -28,7 +29,10 @@ namespace my
     double parallel_area = 58;
     double parallel_volume = 20;
     double radius = 2;
-    double circle_area = M_PI * 2 * 2;
+    double circle_area = M_PI * radius * radius;
+    double hight = 5;
+    double cylinder_area = M_PI * radius * radius * 2  + M_PI * hight * radius * 2;
+    double cylinder_volume = circle_area * hight;
 
     const char* test_div = "\n----------------------------------\n";
 
@@ -201,6 +205,52 @@ TEST_F(CircleShapeTest, circle_square_method_test)
 
     EXPECT_EQ(true, my::circle_area == c->square());
 }
+
+class CylinderShapeTest : public ::testing::Test
+{
+    public:
+        Cylinder* cl;
+    protected:
+        void SetUp(Point center, double radius, double hight)
+        {
+            cl = new Cylinder(center, radius, hight);
+        }
+
+        void TearDown() override
+        {
+            delete cl;
+            cl = nullptr;
+        }
+};
+
+TEST_F(CylinderShapeTest, id_cylinder_method_test)
+{
+    SetUp(my::f, my::radius, my::hight);
+
+    print_test<double>(cl->getType(), "Circle getType() id: ");
+
+    EXPECT_EQ(true, shape::cylinder == cl->getType());
+}
+
+TEST_F(CylinderShapeTest, cylinder_square_method_test)
+{
+    SetUp(my::f, my::radius, my::hight);
+
+    print_test<double>(cl->square(), "Area for cylinder equal to: ");
+
+    EXPECT_EQ(true, my::cylinder_area == cl->square());
+}
+
+TEST_F(CylinderShapeTest, cylinder_volume_method_test)
+{
+    SetUp(my::f, my::radius, my::hight);
+
+    print_test<double>(cl->volume(), "Volume for cylinder equal to: ");
+
+    EXPECT_EQ(true, my::cylinder_volume == cl->volume());
+}
+
+
 
 int main(int argc, char** argv)
 {
