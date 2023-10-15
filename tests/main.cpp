@@ -10,6 +10,7 @@
 #include "../lib/parallelepiped/parallelepiped.h"
 #include "../lib/circle/circle.h"
 #include "../lib/cylinder/cylinder.h"
+#include "../lib/transform/transform.h"
 
 namespace my
 {
@@ -250,7 +251,22 @@ TEST_F(CylinderShapeTest, cylinder_volume_method_test)
     EXPECT_EQ(true, my::cylinder_volume == cl->volume());
 }
 
+class transformTest : public ::testing::Test
+{
+    public:
+        Parallelepiped* p;
+    protected:
+        void SetUp(Points& points)
+        {
+            p = new Parallelepiped(points);
+        }
 
+        void TearDown() override
+        {
+            delete p;
+            p = nullptr;
+        }
+};
 
 int main(int argc, char** argv)
 {

@@ -11,6 +11,6 @@ public:
 	Shape scale(int s);
 
 private:
-	Shape shape;
+	Shape* shape;
 };
 
