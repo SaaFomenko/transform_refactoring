@@ -26,3 +26,8 @@ double Circle::square()
 {
     return M_PI * R * R;
 }
+
+double Circle::getRadius()
+{
+    return R;
+}

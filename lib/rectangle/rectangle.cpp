@@ -33,3 +33,13 @@ double Rectangle::square()
 
 Rectangle::~Rectangle()
 {}
+
+double Rectangle::getWidth()
+{
+    return width;
+}
+
+double Rectangle::getHight()
+{
+    return hight;
+}

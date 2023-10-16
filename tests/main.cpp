@@ -20,20 +20,29 @@ namespace my
     double ab_size = 4;
     Point c(5, 1, 0);
     Point d(1, 1, 0);
+    //Test Rectangle
     Points rectangle_p{a, b, c, d};
     double rect_area = 4;
     Point e(1, 2, 5);
     Point f(5, 2, 5);
     Point g(5, 1, 5);
     Point h(1, 1, 5);
+    //Test Parallelepiped
     Points parallelepiped_p{a, b, c, d, e, f, g, h};
     double parallel_area = 58;
     double parallel_volume = 20;
+    //Test Circle
     double radius = 2;
     double circle_area = M_PI * radius * radius;
+    //Test Cylinder
     double hight = 5;
     double cylinder_area = M_PI * radius * radius * 2  + M_PI * hight * radius * 2;
     double cylinder_volume = circle_area * hight;
+    //Test Transform method shift for Shape
+    const int m = -1;
+    const int n = -1;
+    const int k = 1;
+    Line line_new_pos(Points{Point(0, 1, 1), Point(4, 1, 1)});
 
     const char* test_div = "\n----------------------------------\n";
 
@@ -254,17 +263,22 @@ TEST_F(CylinderShapeTest, cylinder_volume_method_test)
 class transformTest : public ::testing::Test
 {
     public:
-        Parallelepiped* p;
+        Shape* pre_shift;
+        transform* tr;
+
     protected:
         void SetUp(Points& points)
         {
-            p = new Parallelepiped(points);
+            pre_shift = new Line(points);
+            tr = new transform(pre_shift);
         }
 
         void TearDown() override
         {
-            delete p;
-            p = nullptr;
+            delete pre_shift;
+            pre_shift = nullptr;
+            delete tr;
+            tr = nullptr;
         }
 };
 

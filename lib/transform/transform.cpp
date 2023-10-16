@@ -1,36 +1,57 @@
 #include "transform.h"
+#include "../line/line.h"
+#include "../rectangle/rectangle.h"
+#include "../parallelepiped/parallelepiped.h"
+#include "../circle/circle.h"
+#include "../cylinder/cylinder.h"
 
-transform::transform(const Shape& sh)
+
+using It = std::vector<Point>::iterator;
+
+transform::transform(Shape& sh)
 {
-	shape = sh;
+	switch (sh.getType())
+	{
+		case shape::line:
+			shape = new Line(sh.getPoints());
+			break;
+		case shape::rectangle:
+			shape = new Rectangle(sh.getPoints());
+			break;
+		case shape::parallelepiped:
+			shape = new Parallelepiped(sh.getPoints());
+			break;
+		case shape::circle:
+			shape = new Circle(sh.getPoints().at(0), sh.getRadius());
+			break;
+	}
+	// if (sh.getType() == shape::line)
+	// 	shape = new Line(sh.getPoints());
+
+	// if (shape->getType() == shape::rectangle)
+	// 	shape = new Rectangle(sh.getPoints());
+
+	// if (shape->getType() == shape::rectangle)
+	// 	shape = new Rectangle(sh.getPoints());
 }
 
-Shape transform::shift(int m, int n, int k)
+Shape& transform::shift(int m, int n, int k)
 {
-	switch (shape.getType())
+	Points points = shape->getPoints();
+	for (It i = points.begin(); i != points.end(); ++i)
 	{
-	case Shape::line:
-		shape.x1 += m; shape.y1 += n;
-		shape.x2 += m; shape.y2 += n;
-		break;
-	case Shape::sqr:
-		shape.x1 += m; shape.y1 += n;
-		shape.x2 += m; shape.y2 += n;
-		shape.x3 += m; shape.y3 += n;
-		shape.x4 += m; shape.y4 += n;
-		break;
-	case Shape::cube:
-		shape.x1 += m; shape.y1 += n; shape.z1 += k;
-		shape.x2 += m; shape.y2 += n; shape.z2 += k;
-		shape.x3 += m; shape.y3 += n; shape.z3 += k;
-		shape.x4 += m; shape.y4 += n; shape.z4 += k;
-		shape.x5 += m; shape.y5 += n; shape.z5 += k;
-		shape.x6 += m; shape.y6 += n; shape.z6 += k;
-		shape.x7 += m; shape.y7 += n; shape.z7 += k;
-		shape.x8 += m; shape.y8 += n; shape.z8 += k;
-		break;
+		i->x += m;
+		i->y += n;
+		i->z += n;
 	}
-	return shape;
+
+	if (new_shape != nullptr)
+	{
+		shape = new_shape;
+
+	}
+
+
 }
 
 Shape transform::scaleX(int a)

@@ -49,12 +49,17 @@ class Shape
 	protected:
 		int vertexes;
 		Points points;
+		double width;
+		double hight;
 
 	public:
 		Shape(int vertex, Points Points);
 		virtual ~Shape();
 
 		virtual const int getType() = 0;
+		virtual double getWidth() = 0;
+		virtual double getHight() = 0;
+		virtual Points getPoints();
 };
 
 #endif

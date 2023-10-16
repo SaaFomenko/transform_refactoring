@@ -34,7 +34,9 @@ Point::~Point()
 
 Shape::Shape(int vertexes, Points points) :
 	vertexes(vertexes),
-	points(points)
+	points(points),
+	width(0),
+	hight(0)
 {
 	if (vertexes != points.size())
 		throw MyException(err_vertexes);
@@ -42,3 +44,8 @@ Shape::Shape(int vertexes, Points points) :
 
 Shape::~Shape()
 {}
+
+Points Shape::getPoints()
+{
+	return points;
+}

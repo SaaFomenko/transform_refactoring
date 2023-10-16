@@ -15,6 +15,8 @@ class Line : public Shape
 
         virtual double size();
 		virtual const int getType() override;
+		virtual double getWidth() override;
+		virtual double getHight() override;
 };
 
 #endif

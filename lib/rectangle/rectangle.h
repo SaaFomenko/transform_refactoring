@@ -4,13 +4,14 @@
 #include "../shape/shape.h"
 
 
-class Rectangle : Shape
+class Rectangle : public Shape
 {
 	protected:
 		Point A;
 		Point B;
 		Point C;
 		Point D;
+
 		Rectangle(const int vertexes, Points points);
 
 	public:
@@ -18,6 +19,8 @@ class Rectangle : Shape
 		virtual ~Rectangle();
 
 		virtual const int getType() override;
+		virtual double getWidth() override;
+		virtual double getHight() override;
 		virtual double square();
 };
 
