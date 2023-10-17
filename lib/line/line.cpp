@@ -27,13 +27,3 @@ const int Line::getType()
 {
     return shape::line;
 }
-
-double Line::getWidth()
-{
-    return width;
-}
-
-double Line::getHight()
-{
-    return hight;
-}

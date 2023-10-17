@@ -6,16 +6,13 @@
 
 class Cylinder final : public Circle
 {
-    private:
-        double H;
-
     public:
-        Cylinder(Point center, double radius, double hight);
+        Cylinder(Point center, const double radius_, const double hight_);
         ~Cylinder();
 
         const int getType() override;
-        double square() override;
-        double volume();
+        double getSquare() override;
+        double getVolume();
 };
 
 #endif

@@ -260,27 +260,38 @@ TEST_F(CylinderShapeTest, cylinder_volume_method_test)
     EXPECT_EQ(true, my::cylinder_volume == cl->volume());
 }
 
-class transformTest : public ::testing::Test
+class transformParallelepipedTest : public ::testing::Test
 {
     public:
-        Shape* pre_shift;
+        Shape* sh;
         transform* tr;
 
     protected:
         void SetUp(Points& points)
         {
-            pre_shift = new Line(points);
-            tr = new transform(pre_shift);
+            sh = new Parallelepiped(points);
+            tr = new transform(*sh);
         }
 
         void TearDown() override
         {
-            delete pre_shift;
-            pre_shift = nullptr;
+            delete sh;
+            sh = nullptr;
             delete tr;
             tr = nullptr;
         }
 };
+
+TEST_F(transformParallelepipedTest, shift_method_test)
+{
+    SetUp(my::parallelepiped_p);
+
+    Shape& tr_shape = tr->shift(my::m, my::n, my::k);
+
+    print_test<double>(tr_shape.volume(), "Volume for cylinder equal to: ");
+
+    EXPECT_EQ(true, my::cylinder_volume == cl->volume());
+}
 
 int main(int argc, char** argv)
 {

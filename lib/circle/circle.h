@@ -8,7 +8,6 @@ class Circle : public Shape
 {
     protected:
         Point A;
-        double R;
 
         Circle(const int vertexes, Point center, const double radius);
     
@@ -17,7 +16,9 @@ class Circle : public Shape
     virtual ~Circle();
 
     virtual const int getType() override;
-    virtual double square();
+    virtual double getSquare() override;
+    virtual void scale(const int a, const int coord = scale::all) override;
+
 };
 
 #endif

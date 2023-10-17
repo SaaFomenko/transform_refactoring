@@ -12,14 +12,13 @@ Parallelepiped::Parallelepiped(Points points) :
     a = new Line(Points{A, B});
     b = new Line(Points{B, C});
     j = new Line(Points{B, F});
+    width = a->size();
+    hight = b->size();
+    depth = j->size();
 }
 
 Parallelepiped::~Parallelepiped()
 {
-    delete a;
-    a = nullptr;
-    delete b;
-    b = nullptr;
     delete j;
     j = nullptr;
 }
@@ -29,16 +28,11 @@ const int Parallelepiped::getType()
     return shape::parallelepiped;
 }
 
-double Parallelepiped::square()
+double Parallelepiped::getSquare()
 {
-    double ab_sqr = a->size() * b->size();
-    double aj_sqr = a->size() * j->size();
-    double bj_sqr = b->size() * j->size();
+    double ab_sqr = width * hight;
+    double aj_sqr = width * depth;
+    double bj_sqr = hight * depth;
 
     return 2 * ab_sqr + 2 * aj_sqr + 2 * bj_sqr;
-}
-
-double Parallelepiped::volume()
-{
-    return a->size() * b->size() * j->size();
 }

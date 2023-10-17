@@ -12,8 +12,6 @@ class Parallelepiped final : public Rectangle
         Point F;
         Point G;
         Point H;
-        Line* a;
-        Line* b;
         Line* j;
 
     public:
@@ -21,8 +19,7 @@ class Parallelepiped final : public Rectangle
         ~Parallelepiped();
 
         const int getType() override;
-        double square() override;
-        double volume();
+        double getSquare() override;
 };
 
 #endif

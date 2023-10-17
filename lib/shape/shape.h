@@ -20,6 +20,14 @@ class MyException : public std::exception
         const char* what() const noexcept override;
 };
 
+enum scale
+{
+	x,
+	y,
+	z,
+	all,
+};
+
 enum shape
 {
 	line,
@@ -51,15 +59,25 @@ class Shape
 		Points points;
 		double width;
 		double hight;
+		double depth;
+		double radius;
 
 	public:
 		Shape(int vertex, Points Points);
 		virtual ~Shape();
 
 		virtual const int getType() = 0;
-		virtual double getWidth() = 0;
-		virtual double getHight() = 0;
+
 		virtual Points getPoints();
+		virtual double getWidth();
+		virtual double getHight();
+		virtual double getDepth();
+		virtual double getRadius();
+		virtual double getSquare();
+		virtual double getVolume();
+		
+		virtual void shift(const int m, const int n, const int k);
+		virtual void scale(const int a, const int coord = scale::all);
 };
 
 #endif
