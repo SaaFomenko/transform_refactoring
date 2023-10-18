@@ -2,6 +2,7 @@
 #define RECTANGLE_H
 
 #include "../shape/shape.h"
+#include "../line/line.h"
 
 
 class Rectangle : public Shape

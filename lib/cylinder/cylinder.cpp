@@ -1,12 +1,13 @@
+#include <iostream>
 #include <cmath>
 #include "../cylinder/cylinder.h"
 
 
 Cylinder::Cylinder(Point center, const double radius_, const double hight_) :
-    Circle(1, center, radius)
+    Circle(1, center, radius_)
 {
-    radius = radius_;
     hight = hight_;
+    std::cout << "Radius: " << radius << '\n';
 }
 
 Cylinder::~Cylinder()
@@ -24,5 +25,6 @@ double Cylinder::getSquare()
 
 double Cylinder::getVolume()
 {
+    std::cout << "Hight: " << hight << '\n';
     return M_PI * radius * radius * hight;
 }

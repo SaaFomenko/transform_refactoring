@@ -28,6 +28,12 @@ transform::transform(Shape& sh)
 	}
 }
 
+transform::~transform()
+{
+	delete shape;
+	shape = nullptr;
+}
+
 Shape& transform::shift(int m, int n, int k)
 {
 	shape->shift(m, n, k);

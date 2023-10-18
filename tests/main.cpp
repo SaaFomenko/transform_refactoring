@@ -32,6 +32,8 @@ namespace my
     double parallel_area = 58;
     double parallel_volume = 20;
     //Test Circle
+    Point center(7, 0, 7);
+    Point new_center(6, -1, 8);
     double radius = 2;
     double circle_area = M_PI * radius * radius;
     //Test Cylinder
@@ -42,6 +44,7 @@ namespace my
     const int m = -1;
     const int n = -1;
     const int k = 1;
+    Point new_A(0, 1, 1);
     Line line_new_pos(Points{Point(0, 1, 1), Point(4, 1, 1)});
 
     const char* test_div = "\n----------------------------------\n";
@@ -131,9 +134,9 @@ TEST_F(RectangleShapeTest, rectangle_square_method_test)
 {
     SetUp(my::rectangle_p);
 
-    print_test<double>(r->square(), "Area for rectangle equal to: ");
+    print_test<double>(r->getSquare(), "Area for rectangle equal to: ");
 
-    EXPECT_EQ(true, my::rect_area == r->square());
+    EXPECT_EQ(true, my::rect_area == r->getSquare());
 }
 
 class ParallelepipedShapeTest : public ::testing::Test
@@ -166,9 +169,9 @@ TEST_F(ParallelepipedShapeTest, parallelepiped_square_method_test)
 {
     SetUp(my::parallelepiped_p);
 
-    print_test<double>(p->square(), "Area for parallelepiped equal to: ");
+    print_test<double>(p->getSquare(), "Area for parallelepiped equal to: ");
 
-    EXPECT_EQ(true, my::parallel_area == p->square());
+    EXPECT_EQ(true, my::parallel_area == p->getSquare());
 }
 
 
@@ -176,9 +179,9 @@ TEST_F(ParallelepipedShapeTest, parallelepiped_volume_method_test)
 {
     SetUp(my::parallelepiped_p);
 
-    print_test<double>(p->volume(), "Volume for parallelepiped equal to: ");
+    print_test<double>(p->getVolume(), "Volume for parallelepiped equal to: ");
 
-    EXPECT_EQ(true, my::parallel_volume == p->volume());
+    EXPECT_EQ(true, my::parallel_volume == p->getVolume());
 }
 
 class CircleShapeTest : public ::testing::Test
@@ -200,7 +203,7 @@ class CircleShapeTest : public ::testing::Test
 
 TEST_F(CircleShapeTest, id_circle_method_test)
 {
-    SetUp(my::f, my::radius);
+    SetUp(my::center, my::radius);
 
     print_test<double>(c->getType(), "Circle getType() id: ");
 
@@ -209,11 +212,11 @@ TEST_F(CircleShapeTest, id_circle_method_test)
 
 TEST_F(CircleShapeTest, circle_square_method_test)
 {
-    SetUp(my::f, my::radius);
+    SetUp(my::center, my::radius);
 
-    print_test<double>(c->square(), "Area for circle equal to: ");
+    print_test<double>(c->getSquare(), "Area for circle equal to: ");
 
-    EXPECT_EQ(true, my::circle_area == c->square());
+    EXPECT_EQ(true, my::circle_area == c->getSquare());
 }
 
 class CylinderShapeTest : public ::testing::Test
@@ -235,7 +238,7 @@ class CylinderShapeTest : public ::testing::Test
 
 TEST_F(CylinderShapeTest, id_cylinder_method_test)
 {
-    SetUp(my::f, my::radius, my::hight);
+    SetUp(my::center, my::radius, my::hight);
 
     print_test<double>(cl->getType(), "Circle getType() id: ");
 
@@ -244,20 +247,20 @@ TEST_F(CylinderShapeTest, id_cylinder_method_test)
 
 TEST_F(CylinderShapeTest, cylinder_square_method_test)
 {
-    SetUp(my::f, my::radius, my::hight);
+    SetUp(my::center, my::radius, my::hight);
 
-    print_test<double>(cl->square(), "Area for cylinder equal to: ");
+    print_test<double>(cl->getSquare(), "Area for cylinder equal to: ");
 
-    EXPECT_EQ(true, my::cylinder_area == cl->square());
+    EXPECT_EQ(true, my::cylinder_area == cl->getSquare());
 }
 
 TEST_F(CylinderShapeTest, cylinder_volume_method_test)
 {
-    SetUp(my::f, my::radius, my::hight);
+    SetUp(my::center, my::radius, my::hight);
 
-    print_test<double>(cl->volume(), "Volume for cylinder equal to: ");
+    print_test<double>(cl->getVolume(), "Volume for cylinder equal to: ");
 
-    EXPECT_EQ(true, my::cylinder_volume == cl->volume());
+    EXPECT_EQ(true, my::cylinder_volume == cl->getVolume());
 }
 
 class transformParallelepipedTest : public ::testing::Test
@@ -282,15 +285,72 @@ class transformParallelepipedTest : public ::testing::Test
         }
 };
 
-TEST_F(transformParallelepipedTest, shift_method_test)
+TEST_F(transformParallelepipedTest, shift_parallelepiped_method_test)
 {
     SetUp(my::parallelepiped_p);
 
+    std::cout << "! Old position A point in parallelepiped: ";
+    Point A = sh->getPoints().at(0);
+    std::cout << A.x << ", " << A.y << ", " << A.z << "\n";
+
     Shape& tr_shape = tr->shift(my::m, my::n, my::k);
 
-    print_test<double>(tr_shape.volume(), "Volume for cylinder equal to: ");
+    std::cout << "! New position A point in parallelepiped: ";
+    Point new_A = tr_shape.getPoints().at(0);
+    std::cout << new_A.x << ", " << new_A.y << ", " << new_A.z << "\n";
 
-    EXPECT_EQ(true, my::cylinder_volume == cl->volume());
+    EXPECT_EQ(true, my::new_A == new_A);
+
+    print_test<double>(tr_shape.getVolume(), "Volume for parallelepiped equal to: ");
+
+    EXPECT_EQ(true, my::parallel_volume == tr_shape.getVolume());
+}
+
+class transformCylinderTest : public ::testing::Test
+{
+    public:
+        Shape* sh;
+        transform* tr;
+
+    protected:
+        void SetUp(Point center, double radius, double hight)
+        {
+            std::cout << "Test radius: " << radius << '\n';
+            sh = new Cylinder(center, radius, hight);
+            tr = new transform(*sh);
+        }
+
+        void TearDown() override
+        {
+            delete sh;
+            sh = nullptr;
+            delete tr;
+            tr = nullptr;
+        }
+};
+
+
+TEST_F(transformCylinderTest, shift_cylinder_method_test)
+{
+    SetUp(my::center, my::radius, my::hight);
+
+    std::cout << "! Test cylinder radius: ";
+    std::cout << sh->getRadius() << '\n';
+    std::cout << "! Old position A point in cylinder: ";
+    Point A = sh->getPoints().at(0);
+    std::cout << A.x << ", " << A.y << ", " << A.z << "\n";
+
+    Shape& tr_shape = tr->shift(my::m, my::n, my::k);
+
+    std::cout << "! New position A point in cylinder: ";
+    Point new_A = tr_shape.getPoints().at(0);
+    std::cout << new_A.x << ", " << new_A.y << ", " << new_A.z << "\n";
+
+    EXPECT_EQ(true, my::new_center == new_A);
+
+    print_test<double>(tr_shape.getVolume(), "Volume for cylinder equal to: ");
+
+    EXPECT_EQ(true, my::cylinder_volume == tr_shape.getVolume());
 }
 
 int main(int argc, char** argv)

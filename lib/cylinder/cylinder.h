@@ -12,7 +12,7 @@ class Cylinder final : public Circle
 
         const int getType() override;
         double getSquare() override;
-        double getVolume();
+        virtual double getVolume() override;
 };
 
 #endif

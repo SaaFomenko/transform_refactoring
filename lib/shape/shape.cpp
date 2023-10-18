@@ -34,13 +34,13 @@ std::vector<double> Point::get()
 Point::~Point()
 {}
 
-Shape::Shape(int vertexes, Points points) :
+Shape::Shape(int vertexes, Points points, double radius, double hight) :
 	vertexes(vertexes),
 	points(points),
 	width(0),
-	hight(0),
+	hight(hight),
 	depth(0),
-	radius(0)
+	radius(radius)
 {
 	if (vertexes != points.size())
 		throw MyException(err_vertexes);
@@ -55,7 +55,7 @@ void Shape::shift(const int m, const int n, const int k)
 	{
 		i->x += m;
 		i->y += n;
-		i->z += n;
+		i->z += k;
 	}
 }
 

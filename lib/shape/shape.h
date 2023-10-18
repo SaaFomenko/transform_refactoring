@@ -37,7 +37,7 @@ enum shape
 	cylinder,
 };
 
-struct Point
+struct Point final
 {
 	double x;
 	double y;
@@ -45,7 +45,18 @@ struct Point
 
 	Point();
 	Point(double x, double y, double z);
-	virtual ~Point();
+	~Point();
+	bool operator==(Point& other)
+	{
+		bool equal_x = x == other.x;
+		bool equal_y = y == other.y;
+		bool equal_z = z == other.z;
+
+		if (equal_x && equal_y && equal_z)
+			return true;
+		
+		return false;
+	}
 
 	std::vector<double> get();
 };
@@ -63,7 +74,7 @@ class Shape
 		double radius;
 
 	public:
-		Shape(int vertex, Points Points);
+		Shape(int vertex, Points Points, double radius = 0, double hight = 0);
 		virtual ~Shape();
 
 		virtual const int getType() = 0;

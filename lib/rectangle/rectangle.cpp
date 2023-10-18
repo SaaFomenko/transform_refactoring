@@ -1,5 +1,4 @@
 #include "rectangle.h"
-#include "../line/line.h"
 
 
 Rectangle::Rectangle(const int vertexes, Points points) :
